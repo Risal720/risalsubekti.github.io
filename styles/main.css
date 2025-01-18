@@ -1,8 +1,14 @@
 /* Font untuk header dan navigasi */
+
 header {
-    font-family: 'Arial', sans-serif; /* Font untuk header */
+    font-family: 'Playball', serif; /* Font untuk header */
+    font-size: 20px;
     background-color: rgba(51, 51, 51, 0.8);
     color: white;
+}
+
+.navbar-brand {
+    font-size: 35px;
 }
 
 .navbar-brand img {
@@ -27,6 +33,8 @@ nav ul li a {
     text-decoration: none;
 }
 
+/*audio*/
+
 /* Font untuk main konten */
 main {
     padding: 5rem 2rem;
@@ -38,7 +46,7 @@ main {
     height: calc(100vh - 80px); /* Mengurangi tinggi navbar */
 }
 
-section#home {
+section #home {
     display: flex;
     justify-content: center;
     align-items: center;
@@ -62,20 +70,24 @@ section#home {
     margin-left: 20px;
 }
 
-h1 {
-    font-size: 2.5rem;
+
+
+body h1 {
+    font-family: "Playball", serif;
+    font-size: 50px;
     margin-bottom: 0.5rem;
 }
 
-h2 {
+body h2 {
+    font-family: "Fredoka", serif;
     font-size: 1.5rem;
     margin-bottom: 1rem;
 }
 
-p {
-    margin: 0.5rem 0;
-    font-family: 'Courier New', Courier, monospace; /* Font untuk paragraf */
+body p {
+    font-family: "Source Serif 4", serif;
 }
+
 #fadeinImage {
     opacity: 0;
     transition: opacity 2s;
@@ -130,10 +142,8 @@ p {
 }
 /*halaman experience*/
 
-.experiencepage .content { 
-    margin-top: 18rem;
-    width: 100%; 
-    max-width: 800px; 
+.experience .content { 
+    margin-top: 500px; 
 } 
 .experience-item { 
     margin-bottom: 2rem; 

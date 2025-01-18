@@ -44,3 +44,33 @@ document.addEventListener('DOMContentLoaded', function() {
         socialIconsContainer.appendChild(a);
     });
 });
+
+//fungsi audio
+window.addEventListener('load', function() {
+    var audio = document.getElementById('myAudio');
+    var muteButton = document.getElementById('muteButton');
+
+    // Set the audio state from sessionStorage
+    var isMuted = sessionStorage.getItem('isMuted') === 'true';
+    audio.muted = isMuted;
+    muteButton.textContent = isMuted ? 'Unmute' : 'Mute';
+
+    muteButton.addEventListener('click', function() {
+        audio.muted = !audio.muted;
+        muteButton.textContent = audio.muted ? 'Unmute' : 'Mute';
+
+        // Save the audio state to sessionStorage
+        sessionStorage.setItem('isMuted', audio.muted);
+    });
+
+    // Set the current time of the audio from sessionStorage
+    var currentTime = sessionStorage.getItem('currentTime');
+    if (currentTime !== null) {
+        audio.currentTime = parseFloat(currentTime);
+    }
+
+    // Update the current time in sessionStorage every second
+    setInterval(function() {
+        sessionStorage.setItem('currentTime', audio.currentTime);
+    }, 1000);
+});
