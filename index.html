@@ -1,80 +1,306 @@
 <!DOCTYPE html>
-<html lang="id">
+<html lang="id" class="scroll-smooth">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Portofolio - Risal Subekti</title>
+    <script src="https://cdn.tailwindcss.com"></script>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@300..700&family=Playball&family=Source+Serif+4:ital,opsz,wght@0,8..60,200..900;1,8..60,200..900&display=swap" rel="stylesheet">
-    <link rel="icon" type="png" href="image\20250103_182445.png">
-    <title>Risal Subekti</title>
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
-    <link rel="stylesheet" href="styles\main.css">
-</head>
-<audio id="myAudio" loop autoplay> 
-    <source src="audio/Upbeat Happy Rock Fun by Infraction [No Copyright Music]  I'm Good.mp3" type="audio/mpeg"> Browser Anda tidak mendukung tag audio ini. 
-</audio>
-<body class="home-page">
-    <header>
-        <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
-            <a class="navbar-brand" href="#">
-                <img src="image/20250103_182445.png" width="30" height="30" class="d-inline-block align-top" alt="">
-            </a>
-            <a class="navbar-brand" href="#">Risal Subekti
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" xintegrity="sha512-SnH5WK+bZxgPHs44uWIX+LLJAJ9/2eTDRq7t6K4WJ7o3/rA7b7qE8S5L5gBf/pQJz/wJ2T9J7Z/2P2G6H5G5H5" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <style>
+        :root {
+            --bg-dark: #0d1117;
+            --text-light: #c9d1d9;
+            --card-bg: #161b22;
+            --border-color: #30363d;
+        }
 
-            </a>
-            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-                <span class="navbar-toggler-icon"></span>
-            </button>
-            <div class="collapse navbar-collapse" id="navbarNav">
-                <ul class="navbar-nav ml-auto">
-                    <li class="nav-item">
-                        <a class="nav-link" href="index.html">Home</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="profile.html">Profil</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="experience.html">Experience</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="contact.html">Contact</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" id="muteButton">Mute</a> 
-                    </li>
-                </ul>
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: var(--bg-dark);
+            color: var(--text-light);
+        }
+
+        .section-title {
+            position: relative;
+            display: inline-block;
+            padding-bottom: 0.5rem;
+        }
+
+        .section-title::after {
+            content: '';
+            position: absolute;
+            left: 0;
+            bottom: 0;
+            width: 50%;
+            height: 4px;
+            background: linear-gradient(90deg, #3b82f6, #0ea5e9);
+            border-radius: 9999px;
+        }
+
+        .card {
+            background-color: var(--card-bg);
+            border: 1px solid var(--border-color);
+            transition: transform 0.2s, box-shadow 0.2s;
+        }
+
+        .card:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
+        }
+
+        .hero-text {
+            animation: fadeIn 2s ease-in-out;
+        }
+
+        .hero-subtext {
+            animation: slideInUp 2s ease-in-out;
+            animation-delay: 0.5s;
+            animation-fill-mode: both;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+
+        @keyframes slideInUp {
+            from { transform: translateY(20px); opacity: 0; }
+            to { transform: translateY(0); opacity: 1; }
+        }
+
+        .project-image {
+            transition: transform 0.3s ease-in-out;
+        }
+        
+        .project-image:hover {
+            transform: scale(1.05);
+        }
+
+        /* Custom CSS untuk efek hover sidebar */
+        .sidebar-nav .sidebar-link {
+            position: relative;
+        }
+        
+        .sidebar-nav .sidebar-link .sidebar-text {
+            position: absolute;
+            left: 100%; /* Mulai dari kanan ikon */
+            margin-left: 1rem; /* Jarak antara ikon dan teks */
+            white-space: nowrap;
+            opacity: 0;
+            transform: translateX(-10px); /* Efek slide */
+            transition: transform 0.3s ease-out, opacity 0.3s ease-out;
+        }
+        
+        .sidebar-nav .sidebar-link:hover .sidebar-text {
+            opacity: 1;
+            transform: translateX(0);
+        }
+    </style>
+</head>
+<body class="bg-gray-950 text-gray-200">
+
+    <!-- Sidebar Navigation -->
+    <nav class="fixed top-0 left-0 h-full w-16 bg-[#161b22] z-50 flex flex-col items-center justify-center gap-6 hidden md:flex sidebar-nav">
+        <a href="#about" class="group flex items-center p-2 rounded-xl transition-colors duration-200 hover:bg-gray-700 hover:text-blue-400 sidebar-link">
+            <i class="fas fa-user text-xl"></i>
+            <span class="text-xs sidebar-text">Tentang</span>
+        </a>
+        <a href="#skills" class="group flex items-center p-2 rounded-xl transition-colors duration-200 hover:bg-gray-700 hover:text-blue-400 sidebar-link">
+            <i class="fas fa-star text-xl"></i>
+            <span class="text-xs sidebar-text">Keahlian</span>
+        </a>
+        <a href="#pengalaman" class="group flex items-center p-2 rounded-xl transition-colors duration-200 hover:bg-gray-700 hover:text-blue-400 sidebar-link">
+            <i class="fas fa-briefcase text-xl"></i>
+            <span class="text-xs sidebar-text">Pengalaman</span>
+        </a>
+        <a href="#contact" class="group flex items-center p-2 rounded-xl transition-colors duration-200 hover:bg-gray-700 hover:text-blue-400 sidebar-link">
+            <i class="fas fa-envelope text-xl"></i>
+            <span class="text-xs sidebar-text">Kontak</span>
+        </a>
+    </nav>
+
+    <main class="md:ml-16">
+        <!-- Bagian Hero -->
+        <section id="hero" class="min-h-screen flex items-center justify-center text-center px-4 relative overflow-hidden">
+            <!-- Background Image & Overlay -->
+            <div class="absolute inset-0 bg-cover bg-center" style="background-image: url('image/ini.png');"></div>
+            <div class="absolute inset-0 bg-gray-950 bg-opacity-70"></div>
+            
+            <!-- Hero Content -->
+            <div class="space-y-4 max-w-2xl z-10 relative">
+                <h1 class="text-4xl sm:text-5xl md:text-6xl font-bold leading-tight hero-text">
+                    Halo, saya <span class="bg-clip-text text-transparent bg-gradient-to-r from-blue-500 to-cyan-500">Risal Subekti</span>
+                </h1>
+                <p class="text-lg sm:text-xl md:text-2xl hero-subtext">
+                   <span class="font-bold text-gray-400" id="typing-text"></span>
+                </p>
             </div>
-        </nav>
-    </header>
-    <main class="container mt-5 d-flex align-items-center justify-content-center">
-        <section id="home" class="d-flex">
-            <div class="profile-photo">
-                <img id="fadeinImage" src="image/photoprofile.png" alt="Foto Profil" >
+        </section>
+
+        <!-- Bagian Tentang Saya -->
+        <section id="about" class="py-20 px-4">
+            <div class="container mx-auto">
+                <h2 class="text-3xl font-bold mb-8 text-center section-title mx-auto">Tentang Saya</h2>
+                <div class="bg-gray-800 p-8 rounded-xl shadow-lg flex flex-col md:flex-row items-center space-y-6 md:space-y-0 md:space-x-8 card">
+                    <div class="text-center md:text-left">
+                        <p class="text-lg leading-relaxed">
+                            Saya adalah mahasiswa di Teknik Informatika Universitas Pelita Bangsa. Selain itu, saya juga seorang lulusan SMK dengan beberapa pengalaman kerja di industri manufaktur sebagai Aftersales, Quality Control, dan Final Inspection. Pengalaman ini telah mengasah ketelitian dan kemampuan saya dalam menyelesaikan masalah. Saya memiliki passion dalam dunia pemrograman dan berkeinginan untuk berkarir di bidang tersebut.
+                        </p>
+                    </div>
+                </div>
             </div>
-            <div class="text ml-4">
-                <h1 class="display-4">My Portfolio</h1>
-                <h2>Selamat Datang di Portofolio Saya,</h2>
-                <p>Halo! Saya Risal Subekti, seorang mahasiswa informatika yang hobi bulu tangkis, fotografi, desain ilustrasi, dan game. Saya juga punya pengalaman di beberapa perusahaan manufaktur.</p>
-                <p>Nikmati kunjungan Anda, dan jangan ragu menghubungi saya untuk bertanya atau berkolaborasi.</p>
-                <p>Salam hangat, Risal Subekti</p>
+        </section>
+
+        <!-- Bagian Keahlian -->
+        <section id="skills" class="py-20 px-4 bg-gray-900">
+            <div class="container mx-auto">
+                <h2 class="text-3xl font-bold mb-8 text-center section-title mx-auto">Keahlian</h2>
+                <div class="bg-gray-800 p-8 rounded-xl shadow-lg flex flex-col md:flex-row items-center space-y-6 md:space-y-0 md:space-x-8 card">
+                    <div class="w-full">
+                        <ul class="list-disc list-inside space-y-2">
+                            <li>Penggunaan Alat Ukur (Caliper, Mikrometer, Dial Gauge, Feeler Gauge)</li>
+                            <li>Visual Check</li>
+                            <li>Inspeksi Produk</li>
+                            <li>Judgement NG/OK</li>
+                            <li>Kerja Tim</li>
+                            <li>Menggunakan Microsoft Office</li>
+                            <li>Programming (HTML, CSS, JavaScript, Framework, Java, Python, C++)</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Bagian Pengalaman -->
+        <section id="pengalaman" class="py-20 px-4">
+            <div class="container mx-auto">
+                <h2 class="text-3xl font-bold mb-8 text-center section-title mx-auto">Pengalaman</h2>
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                    <!-- Pengalaman Mahasiswa -->
+                    <div class="card rounded-xl overflow-hidden shadow-lg">
+                        <div class="p-6">
+                            <h3 class="text-xl font-bold mb-2">Mahasiswa Teknik Informatika</h3>
+                            <p class="text-sm font-semibold text-gray-400">Universitas Pelita Bangsa (September 2023 - Sekarang)</p>
+                            <ul class="list-disc list-inside mt-4 text-gray-400 text-sm space-y-2">
+                                <li>Mempelajari dasar-dasar pemrograman, struktur data, dan algoritma.</li>
+                                <li>Terlibat dalam proyek-proyek kelompok untuk mengembangkan aplikasi web.</li>
+                                <li>Mengikuti berbagai seminar dan workshop untuk memperluas pengetahuan di bidang teknologi.</li>
+                            </ul>
+                        </div>
+                    </div>
+                    <!-- Pengalaman PT. Ichikoh Indonesia -->
+                    <div class="card rounded-xl overflow-hidden shadow-lg">
+                        <div class="p-6">
+                            <h3 class="text-xl font-bold mb-2">Final Inspection</h3>
+                            <p class="text-sm font-semibold text-gray-400">PT. Ichikoh Indonesia (Juni 2023 - Juni 2024)</p>
+                            <ul class="list-disc list-inside mt-4 text-gray-400 text-sm space-y-2">
+                                <li>Melakukan Proses Assembly</li>
+                                <li>Melakukan Proses Leak Test</li>
+                                <li>Mengoperasikan Mesin Leak Test</li>
+                                <li>Memastikan Produk Sesuai dengan Standar</li>
+                                <li>Memastikan Kelengkapan Pada Produk</li>
+                                <li>Mengoperasikan SAP</li>
+                            </ul>
+                        </div>
+                    </div>
+                    <!-- Pengalaman PT. Yanfeng Automotive Interior Indonesia -->
+                    <div class="card rounded-xl overflow-hidden shadow-lg">
+                        <div class="p-6">
+                            <h3 class="text-xl font-bold mb-2">Quality Control</h3>
+                            <p class="text-sm font-semibold text-gray-400">PT. Yanfeng Automotive Interior Indonesia (Januari 2022 - Januari 2023)</p>
+                            <ul class="list-disc list-inside mt-4 text-gray-400 text-sm space-y-2">
+                                <li>Membuat laporan produksi</li>
+                                <li>Memastikan Produk Sesuai Dengan Standar</li>
+                                <li>Melakukan Check Fixture Product Secara Berkala</li>
+                            </ul>
+                        </div>
+                    </div>
+                    <!-- Pengalaman PT. Senzo Feinmetal -->
+                    <div class="card rounded-xl overflow-hidden shadow-lg">
+                        <div class="p-6">
+                            <h3 class="text-xl font-bold mb-2">Aftersales</h3>
+                            <p class="text-sm font-semibold text-gray-400">PT. Senzo Feinmetal (Januari 2020 - April 2021)</p>
+                            <ul class="list-disc list-inside mt-4 text-gray-400 text-sm space-y-2">
+                                <li>Melakukan service rutin unit towing disetiap customer</li>
+                                <li>Memperbaiki/mengganti komponen-komponen modifikasi dari unit towing</li>
+                                <li>Merestorasi unit towing</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Bagian Kontak -->
+        <section id="contact" class="py-20 px-4 bg-gray-900">
+            <div class="container mx-auto">
+                <h2 class="text-3xl font-bold mb-8 text-center section-title mx-auto">Kontak</h2>
+                <div class="max-w-xl mx-auto text-center space-y-4">
+                    <p class="text-lg">
+                        Silakan hubungi saya melalui email atau media sosial.
+                    </p>
+                    <a href="mailto:risalsubekti1507@gmail.com" class="inline-block px-6 py-3 bg-blue-600 text-white font-semibold rounded-full shadow-lg hover:bg-blue-700 transition duration-300 transform hover:scale-105">
+                        Kirim Email
+                    </a>
+                    <div class="flex justify-center space-x-6 mt-6">
+                        <!-- Ikon Instagram -->
+                        <a href="https://www.instagram.com/risalut15/profilecard/?igsh=eTVzaTF3bmZvdXkz" target="_blank" class="text-gray-400 hover:text-blue-400 transition-colors duration-200">
+                            <i class="fab fa-instagram text-3xl"></i>
+                        </a>
+                        <!-- Ikon LinkedIn -->
+                        <a href="https://www.linkedin.com/in/risal-subekti-694b25244?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=android_app" target="_blank" class="text-gray-400 hover:text-blue-400 transition-colors duration-200">
+                            <i class="fab fa-linkedin text-3xl"></i>
+                        </a>
+                        <!-- Ikon GitHub -->
+                        <a href="https://github.com/risal720" target="_blank" class="text-gray-400 hover:text-blue-400 transition-colors duration-200">
+                            <i class="fab fa-github text-3xl"></i>
+                        </a>
+                        <!-- Ikon WhatsApp -->
+                        <a href="https://wa.me/6283145205583" target="_blank" class="text-gray-400 hover:text-blue-400 transition-colors duration-200">
+                            <i class="fab fa-whatsapp text-3xl"></i>
+                        </a>
+                    </div>
+                </div>
             </div>
         </section>
     </main>
-    <style>
-        body {
-          background-image: url('image/background.jpg');
-          background-repeat: no-repeat;
-          background-attachment: fixed;
-          background-size: cover;
+
+    <!-- Footer -->
+    <footer class="py-6 text-center text-gray-500 border-t border-gray-700 mt-12">
+        <p>&copy; 2024 Risal Subekti. Semua hak dilindungi.</p>
+    </footer>
+
+    <script>
+        // Efek ketik
+        const roles = [ "Quality Control", "Pengembang Web", "Desainer UI/UX", "Frontend Developer", "Mahasiswa"];
+        const typingTextElement = document.getElementById('typing-text');
+        let roleIndex = 0;
+        let charIndex = 0;
+        let isDeleting = false;
+
+        function type() {
+            const currentRole = roles[roleIndex];
+            const displayText = isDeleting
+                ? currentRole.substring(0, charIndex - 1)
+                : currentRole.substring(0, charIndex + 1);
+            
+            typingTextElement.textContent = displayText;
+            
+            if (!isDeleting && charIndex === currentRole.length) {
+                setTimeout(() => isDeleting = true, 1000);
+            } else if (isDeleting && charIndex === 0) {
+                isDeleting = false;
+                roleIndex = (roleIndex + 1) % roles.length;
+            }
+
+            charIndex += isDeleting ? -1 : 1;
+            setTimeout(type, isDeleting ? 50 : 150);
         }
-    </style>
-    <!-- Tambahkan JavaScript Bootstrap dan dependensi -->
-    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.3/dist/umd/popper.min.js"></script>
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
-    <!-- Tambahkan JavaScript kustom Anda -->
-    <script src="script\main.js"></script>
-    
+
+        document.addEventListener('DOMContentLoaded', type);
+    </script>
 </body>
 </html>
